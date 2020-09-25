@@ -2,7 +2,7 @@
   <h1>Veille techno</h1>
   <Form @add="saveTechno" />
   <br />
-  <TechnoList :technos="technos" />
+  <TechnoList :technos="technos" @delete-techno="deleteTechno" />
 </template>
 
 <script>
@@ -20,13 +20,18 @@ export default {
 
     const saveTechno = function (data) {
       console.log("App / saveTechno()", data);
-      // technos = [...technos, { techno: data, id: Date.now() }];
-      technos.value.push({ techno: data, id: Date.now() });
+      technos.value = [...technos.value, { techno: data, id: Date.now() }];
       console.log("technos", technos);
+    };
+
+    const deleteTechno = function (tech) {
+      console.log("App / deleteTechno()", tech);
+      technos.value = technos.value.filter((t) => t.id !== tech.id);
     };
 
     return {
       saveTechno,
+      deleteTechno,
       technos,
     };
   },
