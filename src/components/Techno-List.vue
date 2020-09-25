@@ -17,7 +17,7 @@
 <script>
 import { ref } from "vue";
 export default {
-  emits: ["delete-techno"],
+  emits: ["delete-techno", "edit-techno"],
   setup(props, { emit }) {
     let technoToEdit = ref(null);
     let deleteTechno = function (tech) {
@@ -30,8 +30,8 @@ export default {
     };
 
     let save = function () {
+      emit("edit-techno", technoToEdit.value);
       technoToEdit.value = null;
-      console.log("TechnoList | save() ", technoToEdit.value);
     };
 
     return {
