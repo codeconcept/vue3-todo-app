@@ -2,19 +2,18 @@
   <h1>Veille techno</h1>
   <Form @add="saveTechno" />
   <br />
-  <ul>
-    <li v-for="tech in technos" :key="tech.id">{{tech.techno}}</li>
-  </ul>
-  {{technos.length}} techno{{technos.length > 1 ? 's' : ''}}
+  <TechnoList :technos="technos" />
 </template>
 
 <script>
 import { ref } from "vue";
 import Form from "@/components/Form";
+import TechnoList from "@/components/Techno-List";
 export default {
   name: "App",
   components: {
     Form,
+    TechnoList,
   },
   setup() {
     let technos = ref([]);
